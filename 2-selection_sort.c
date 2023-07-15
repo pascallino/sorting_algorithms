@@ -29,6 +29,8 @@ void selection_sort(int *array, size_t size)
 	int aLength = size;
 	int jMin;
 
+	if (size <= 1)
+		return;
 	/* advance the position through the entire array */
 	/*   (could do i < aLength-1 because single element is also min element) */
 	for (i = 0; i < aLength - 1; i++)
