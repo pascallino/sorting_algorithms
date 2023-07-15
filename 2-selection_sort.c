@@ -1,14 +1,14 @@
 #include "sort.h"
 
 /**
- * swap_func - swap numbers
+ * swap_sel - swap numbers
  * @idx1: first num
  * @idx2: second num
  * @array: array to be swapped in memmory
  * Return: void
  */
 
-void swap_func(int *array, int idx1, int idx2)
+void swap_sel(int *array, int idx1, int idx2)
 {
 int *ptr = array;
 int temp;
@@ -31,14 +31,14 @@ void selection_sort(int *array, size_t size)
 
 	/* advance the position through the entire array */
 	/*   (could do i < aLength-1 because single element is also min element) */
-	for (i = 0; i < aLength-1; i++)
+	for (i = 0; i < aLength - 1; i++)
 	{
 		/* find the min element in the unsorted a[i .. aLength-1] */
 
 		/* assume the min is the first element */
 		jMin = i;
 		/* test against elements after i to find the smallest */
-		for (j = i+1; j < aLength; j++)
+		for (j = i + 1; j < aLength; j++)
 		{
 			/* if this element is less, then it is the new minimum */
 			if (array[j] < array[jMin])
@@ -48,9 +48,10 @@ void selection_sort(int *array, size_t size)
 			}
 		}
 
-		if (jMin != i) 
+		if (jMin != i)
 		{
-			swap_func(array, i, jMin);
+			swap_sel(array, i, jMin);
+			print_array(array, size);
 		}
 	}
 
