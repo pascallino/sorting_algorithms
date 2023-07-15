@@ -1,5 +1,4 @@
 #include "sort.h"
-
 void swap_nodes(listint_t **list, listint_t *node1, listint_t *node2) {
     if (node1 == node2)
         return;
@@ -48,17 +47,16 @@ void cocktail_sort_list(listint_t **list) {
     while (swapped) {
         swapped = 0;
 
-        /*Forward pass (bubble sort)*/
+        /* Forward pass (bubble sort)*/
         while (start != end) {
             if (start->n > start->next->n) {
                 swap_nodes(list, start, start->next);
                 swapped = 1;
-                print_list((const listint_t *)*list);
             }
             start = start->next;
         }
 
-        /*If no swaps occurred, the list is sorted*/
+        // If no swaps occurred, the list is sorted
         if (!swapped)
             break;
 
@@ -70,9 +68,9 @@ void cocktail_sort_list(listint_t **list) {
             if (start->n < start->prev->n) {
                 swap_nodes(list, start->prev, start);
                 swapped = 1;
-                print_list((const listint_t *)*list);
             }
             start = start->prev;
         }
     }
 }
+
