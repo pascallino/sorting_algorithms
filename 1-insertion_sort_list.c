@@ -6,43 +6,42 @@
  * Return: void
  */
 
-/**	i ← 1
-while i < length(A)
-	j ← i
-	while j > 0 and A[j-1] > A[j]
-	swap A[j] and A[j-1]
-	j ← j - 1
-	end while
-	i ← i + 1
-	end while*/
-
 void insertion_sort_list(listint_t **list)
 {
-listint_t *outernode = *list, *innernode;
-listint_t *first, *second;
+	listint_t *outernode, *innernode;
+	listint_t *first, *second;
+	
+    if (*list == NULL || (*list)->next == NULL)
+        return;
+    
+    outernode = (*list)->next;
+    while (outernode != NULL)
+    {
+        innernode = outernode;
+        while (innernode->prev != NULL && innernode->prev->n > innernode->n)
+        {
+            first = innernode->prev;
+            second = innernode;
 
-/**while (node != NULL)
-{
-	len++;
-	node = node->next;
-}*/
-outernode = outernode->next;
-while (outernode != NULL)
-{
-	innernode = outernode;
-while (innernode != NULL and node->prev->n > node->n)
-{
-	first = innernode->prev;
-	second = innernode;
-	first->next = second->next;
+            /* Update next and prev pointers of adjacent nodes*/
+            if (first->prev != NULL)
+                first->prev->next = second;
+            else
+                *list = second;
+            
+            second->prev = first->prev;
+            first->prev = second;
+            first->next = second->next;
+            
+            if (second->next != NULL)
+                second->next->prev = first;
+            
+            second->next = first;
+            
+            innernode = first;
+        }
+        
+        outernode = outernode->next;
+    }
+}
 
-	if (second->next != NULL)
-		second->next->prev = first;
-	second->next = first;
-	first->prev = second;
-
-	innernode = innernode->prev;
-}
-outernode = outernode->next;
-}
-}
