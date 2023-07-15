@@ -1,47 +1,60 @@
-#include <stdio.h>
-
-void swap(int *a, int *b) {
-    int temp = *a;
-    *a = *b;
-    *b = temp;
+#include "sort.h"
+/**
+ * swap - swap values
+ * @a: val a
+ * @b: val b
+ * Return: Void
+ */
+void swap(int *a, int *b)
+{
+	int temp = *a;
+	*a = *b;
+	*b = temp;
 }
 
-void shell_sort(int *array, size_t size) {
-    // Generate the Knuth sequence for intervals
-    int interval = 1;
-    while (interval <= size / 3) {
-        interval = interval * 3 + 1;
-    }
+/**
+ * shell_sort - shell sort
+ * @array: array
+ * @size: size
+ */
+void shell_sort(int *array, size_t size)
+{
+	/* Generate the Knuth sequence for intervals */
+	int interval = 1;
+	size_t i;
+	int size2 = size;
+	int temp, j;
 
-    while (interval > 0) {
-        // Perform insertion sort with the current interval
-        for (size_t i = interval; i < size; i++) {
-            int temp = array[i];
-            int j = i;
+	while (interval <= size2 / 3)
+	{
+		interval = interval * 3 + 1;
+	}
 
-            while (j >= interval && array[j - interval] > temp) {
-                array[j] = array[j - interval];
-                j -= interval;
-            }
+	while (interval > 0)
+	{
+		/* Perform insertion sort with the current interval */
+		for (i = interval; i < size; i++)
+		{
+			temp = array[i];
+			j = i;
 
-            array[j] = temp;
-        }
+			while (j >= interval && array[j - interval] > temp)
+			{
+				array[j] = array[j - interval];
+				j -= interval;
+			}
 
-        // Print the array at each interval step
-        printf("Array after interval %d: ", interval);
-        for (size_t i = 0; i < size; i++) {
-            printf("%d ", array[i]);
-        }
-        printf("\n");
+			array[j] = temp;
+		}
 
-        // Update the interval using the Knuth sequence
-        interval = (interval - 1) / 3;
-    }
-}
+		/* Print the array at each interval step */
+		/* printf("Array after interval %d: ", interval); */
+		/*for (size_t i = 0; i < size; i++) {*/
+		/*   printf("%d ", array[i]);*/
+		/*}*/
+		print_array(array, size);
 
-
-    }
-    printf("\n");
-
-    return 0;
+		/*Update the interval using the Knuth sequence*/
+		interval = (interval - 1) / 3;
+	}
 }

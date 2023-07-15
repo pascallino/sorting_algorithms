@@ -20,7 +20,7 @@ void swap_quick(int *a, int *b)
  * @high: right sub array/ pertition index
  * Return: NULL
  */
-int partition(int *arr, int low, int high)
+int partition(int *arr, int low, int high, int size)
 {
 	int pivot = arr[high]; /* Choose the last element as the pivot */
 	int i = low - 1; /* Index of the smaller element*/
@@ -31,11 +31,19 @@ int partition(int *arr, int low, int high)
 		if (arr[j] < pivot)
 		{
 			i++;
+			if (i != j)
+			{
 			swap_quick(&arr[i], &arr[j]);
+			print_array(arr, size);
+			}
 		}
 	}
 	/*Place the pivot element in its correct position*/
+	if (i + 1  != high)
+	{
 	swap_quick(&arr[i + 1], &arr[high]);
+	print_array(arr, size);
+	}
 	return (i + 1);
 }
 
@@ -46,16 +54,16 @@ int partition(int *arr, int low, int high)
  * @high: ==
  * Return: NULL
  */
-void quickSort_helper(int *arr, int low, int high)
+void quickSort_helper(int *arr, int low, int high,int size)
 {
 	if (low < high)
 	{
-		int pi = partition(arr, low, high); /*Partition the array*/
+		int pi = partition(arr, low, high, size); /*Partition the array*/
 
 		/* Recursively sort elements before the pivot*/
-		quickSort_helper(arr, low, pi - 1);
+		quickSort_helper(arr, low, pi - 1, size);
 		/*Recursively sort elements after the pivot*/
-		quickSort_helper(arr, pi + 1, high);
+		quickSort_helper(arr, pi + 1, high, size);
 	}
 }
 /**
@@ -68,6 +76,6 @@ void quick_sort(int *array, size_t size)
 {
 	if (size <= 1)
 		return;
-	quickSort_helper(array, 0, size - 1);
+	quickSort_helper(array, 0, size - 1, size);
 
 }
