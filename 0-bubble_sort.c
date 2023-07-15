@@ -31,7 +31,7 @@ int *A = array;
 bool swapped = false;
 
 len = size;
-if (len == 1)
+if (len <= 1)
 	return;
 do {
 swapped = false;
