@@ -8,43 +8,47 @@
 
 void insertion_sort_list(listint_t **list)
 {
-	listint_t *current = (*list)->next;
-	listint_t *inner_current = current;
-	listint_t *temp;
+	listint_t *outernode, *innernode;
+	listint_t *first, *second;
+	bool swapped = false;
 	
     if (*list == NULL || (*list)->next == NULL)
         return;
+
+	do{
+		swapped = false;
     
-    
-    
-    while (current != NULL)
+    outernode = (*list)->next;
+    while (outernode != NULL)
     {
-        inner_current = current;
-        
-        while (inner_current->prev != NULL && inner_current->prev->n > inner_current->n)
+        innernode = outernode;
+        while (innernode->prev != NULL && innernode->prev->n > innernode->n)
         {
-            // Perform the swap between inner_current and inner_current->prev
-            temp = inner_current->prev;
+            first = innernode->prev;
+            second = innernode;
+
+            // Update next and prev pointers of adjacent nodes
+            if (first->prev != NULL)
+                first->prev->next = second;
+            else
+                *list = second;
             
-            inner_current->prev = temp->prev;
-            if (temp->prev != NULL)
-                temp->prev->next = inner_current;
+            second->prev = first->prev;
+            first->prev = second;
+            first->next = second->next;
             
-            temp->next = inner_current->next;
-            if (inner_current->next != NULL)
-                inner_current->next->prev = temp;
+            if (second->next != NULL)
+                second->next->prev = first;
             
-            inner_current->next = temp;
-            temp->prev = inner_current;
+            second->next = first;
             
-            inner_current = temp;
-            
-            // Update the head of the list if necessary
-            if (inner_current->prev == NULL)
-                *list = inner_current;
+            innernode = first;
+		swapped = true;
         }
         
-        current = current->next;
+        outernode = outernode->next;
     }
+	} while(swapped == true);
 }
+
 
