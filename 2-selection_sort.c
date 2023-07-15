@@ -1,6 +1,24 @@
 #include "sort.h"
 
 /**
+ * swap_func - swap numbers
+ * @idx1: first num
+ * @idx2: second num
+ * @array: array to be swapped in memmory
+ * Return: void
+ */
+
+void swap_func(int *array, int idx1, int idx2)
+{
+int *ptr = array;
+int temp;
+
+temp = ptr[idx1];
+ptr[idx1] = ptr[idx2];
+ptr[idx2] = temp;
+}
+
+/**
  * selection_sort - selction sorting
  * @array: array
  * @size: size of the array
