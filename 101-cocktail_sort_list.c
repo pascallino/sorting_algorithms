@@ -1,77 +1,86 @@
 #include "sort.h"
+void cocktail_sort_list(listint_t **list);
+listint_t *swap_nodes(listint_t **list, listint_t *node1,
+		listint_t *node2, int pos);
+/**
+ * swap_nodes - swapping nodes
+ * @node1: first node
+ * @node2: Second node
+ * @list: list
+ * @pos: pos
+ * Return: Current swapped node
+ */
+listint_t *swap_nodes(listint_t **list, listint_t *node1,
+		listint_t *node2, int pos)
+{
+	listint_t *first = node1;
+	listint_t *second = node2;
 
-void swap_nodes(listint_t **list, listint_t *node1, listint_t *node2) {
-    if (node1 == node2)
-        return;
+	/*Update next and prev pointers of adjacent nodes */
+	if (first->prev != NULL)
+		first->prev->next = second;
+	else
+		*list = second;
 
-    if (node1->prev != NULL)
-        node1->prev->next = node2;
-    if (node2->next != NULL)
-        node2->next->prev = node1;
+	second->prev = first->prev;
+	first->prev = second;
+	first->next = second->next;
 
-    if (node2->prev == node1) {
-        node1->next = node2->next;
-        node2->prev = node1->prev;
-        node1->prev = node2;
-        node2->next = node1;
-    } else {
-        listint_t *temp1 = node1->prev;
-        listint_t *temp2 = node1->next;
-        node1->prev = node2->prev;
-        node1->next = node2->next;
+	if (second->next != NULL)
+		second->next->prev = first;
 
-        if (node1->prev != NULL)
-            node1->prev->next = node1;
-        if (node1->next != NULL)
-            node1->next->prev = node1;
-
-        node2->prev = temp1;
-        node2->next = temp2;
-
-        if (node2->prev != NULL)
-            node2->prev->next = node2;
-        if (node2->next != NULL)
-            node2->next->prev = node2;
-
-        if (*list == node1)
-            *list = node2;
-        else if (*list == node2)
-            *list = node1;
-    }
+	second->next = first;
+	if (pos == 2)
+		return (first);
+	return (second);
+	/*innernode = second;*/
 }
+/**
+ * cocktail_sort_list - sorting
+ * @list: list
+ * Return: return all
+ */
+void cocktail_sort_list(listint_t **list)
+{
+	int swapped = 1;
+	listint_t *start = *list;
+	listint_t *end = NULL;
+	listint_t *begin = NULL;
 
-void cocktail_sort_list(listint_t **list) {
-    int swapped = 1;
-    listint_t *start = *list;
-    listint_t *end = NULL;
-
-    while (swapped) {
-        swapped = 0;
-
-        /* Forward pass (bubble sort)*/
-        while (start != end) {
-            if (start->n > start->next->n) {
-                swap_nodes(list, start, start->next);
-                swapped = 1;
-            }
-            start = start->next;
-        }
-
-        // If no swaps occurred, the list is sorted
-        if (!swapped)
-            break;
-
-        swapped = 0;
-        end = start->prev; /* Mark the end of the sorted portion*/
-
-        /* Backward pass (bubble sort)*/
-        while (start != end) {
-            if (start->n < start->prev->n) {
-                swap_nodes(list, start->prev, start);
-                swapped = 1;
-            }
-            start = start->prev;
-        }
-    }
+	while (swapped)
+	{
+		swapped = 0;
+		while (start != end)/* Forward pass (bubble sort)*/
+		{
+			if (start->n > start->next->n)
+			{
+				start = swap_nodes(list, start, start->next, 1);
+				swapped = 1;
+				print_list(*list);
+			}
+			start = start->next;
+			if (start->next == NULL)
+				break;
+		}
+		if (!swapped)/* If no swaps occurred, the list is sorted*/
+			break;
+		swapped = 0;
+		start = start->prev;/* Mark the end of the sorted portion*/
+		end = start;/* Backward pass (bubble sort)*/
+		while (start != begin)/* Backward pass (bubble sort)*/
+		{
+			if (start->n < start->prev->n)
+			{
+				start = swap_nodes(list, start->prev, start, 2);
+				swapped = 1;
+				print_list(*list);
+			}
+			start = start->prev;
+			if (start->prev == NULL)
+				break;
+		}
+		start = start->next;
+		begin = start;
+	}
 }
 
