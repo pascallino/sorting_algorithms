@@ -8,7 +8,8 @@
  * @left: left sublist count
  * Return: Null
  */
-void merge(int arr[], int temp[], int left, int mid, int right) {
+void merge(int arr[], int temp[], int left, int mid, int right)
+{
 	int i = left;
 	int j = mid + 1;
 	int k = 0;
@@ -48,15 +49,15 @@ void merge(int arr[], int temp[], int left, int mid, int right) {
 	}
 }
 /**
- * mergeSortHelpe - merge sub arrays
+ * mergeSortHelper - merge sub arrays
  * @temp: temp array to store the sorted arrays
  * @arr: original array
- * @mid: mid index
  * @right:  right sun list count
  * @left: left sublist count
  * Return: Null
  */
-void mergeSortHelper(int arr[], int temp[], int left, int right) {
+void mergeSortHelper(int arr[], int temp[], int left, int right)
+{
 	if (left < right)
 	{
 		int mid = left + (right - left) / 2;
@@ -75,7 +76,7 @@ void mergeSortHelper(int arr[], int temp[], int left, int right) {
  */
 void merge_sort(int *arr, size_t size)
 {
-	int* temp = (int*)malloc(size * sizeof(int));
+	int *temp = (int *)malloc(size * sizeof(int));
 
 	mergeSortHelper(arr, temp, 0, size - 1);
 
