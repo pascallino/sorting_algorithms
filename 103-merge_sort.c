@@ -47,7 +47,15 @@ void merge(int arr[], int temp[], int left, int mid, int right) {
 		arr[left + i] = temp[i];
 	}
 }
-
+/**
+ * mergeSortHelpe - merge sub arrays
+ * @temp: temp array to store the sorted arrays
+ * @arr: original array
+ * @mid: mid index
+ * @right:  right sun list count
+ * @left: left sublist count
+ * Return: Null
+ */
 void mergeSortHelper(int arr[], int temp[], int left, int right) {
 	if (left < right)
 	{
