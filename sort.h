@@ -46,5 +46,8 @@ listint_t *swap_nodes(listint_t **list, listint_t *node1,
 void counting_sort(int *array, size_t size);
 void merge_sort(int *array, size_t size);
 void heap_sort(int *array, size_t size);
+int getMax(int a[], int n);
+void countingSort(int a[], int n, int place);
+void radix_sort(int *array, size_t size);
 
 #endif
