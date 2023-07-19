@@ -18,6 +18,7 @@ void swap_quick(int *a, int *b)
  * @arr: array
  * @low: left partition index
  * @high: right sub array/ pertition index
+ * @size: array size
  * Return: NULL
  */
 int partition(int *arr, int low, int high, int size)
@@ -52,9 +53,10 @@ int partition(int *arr, int low, int high, int size)
  * @arr: ==
  * @low: ==
  * @high: ==
+ * @size: ==
  * Return: NULL
  */
-void quickSort_helper(int *arr, int low, int high,int size)
+void quickSort_helper(int *arr, int low, int high, int size)
 {
 	if (low < high)
 	{
@@ -74,7 +76,7 @@ void quickSort_helper(int *arr, int low, int high,int size)
  */
 void quick_sort(int *array, size_t size)
 {
-	if (size <= 1)
+	if (array == NULL || size < 2)
 		return;
 	quickSort_helper(array, 0, size - 1, size);
 
