@@ -80,6 +80,8 @@ void heap_sort(int *array, size_t size)
 {
 	int i;
 
+	if (array == NULL || size < 2)
+		return;
 	build_heap(array, size);
 
 	for (i = size - 1; i >= 1; i--)
