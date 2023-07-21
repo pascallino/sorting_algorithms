@@ -50,6 +50,7 @@ void heap_sort(int *array, size_t size);
 int getMax(int a[], int n);
 void countingSort(int a[], int n, int place);
 void radix_sort(int *array, size_t size);
+void bitonic_sort(int *array, size_t size);
 void quickSorthelper(int *arr, int start, int end, size_t size);
 void quick_sort_hoare(int *arr, int size);
 #endif
