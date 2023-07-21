@@ -40,7 +40,7 @@ void counting_sort(int *arr, size_t size)
 	int *output;
 	int size2 = size;
 
-	if (array == NULL || size < 2)
+	if (arr == NULL || size < 2)
 		return;
 	largenum = findMax(arr, size);
 	/* Create a count array to store the count of individual*/
