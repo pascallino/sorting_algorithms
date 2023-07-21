@@ -12,8 +12,8 @@ void insertion_sort_list(listint_t **list)
 	listint_t *first, *second;
 	/*bool swapped = false;*/
 
-	if (*list == NULL || (*list)->next == NULL)
-		return;
+if (list == NULL || *list == NULL)
+	return;
 	/*do{*/
 	/*swapped = false;*/
 
