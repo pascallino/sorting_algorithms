@@ -58,7 +58,7 @@ int partition(int *arr, int low, int high, int size)
  */
 void quickSort_helper(int *arr, int low, int high, int size)
 {
-	if (low < high)
+	if (high - low > 0)
 	{
 		int pi = partition(arr, low, high, size); /*Partition the array*/
 
