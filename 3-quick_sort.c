@@ -24,28 +24,28 @@ void swap_quick(int *a, int *b)
 int partition(int *arr, int low, int high, int size)
 {
 	int pivot = arr[high]; /* Choose the last element as the pivot */
-	int i = low - 1; /* Index of the smaller element*/
+	int i = low; /* Index of the smaller element*/
 	int j;
 
-	for (j = low; j <= high - 1; j++)
+	for (j = low; j < high; j++)
 	{
 		if (arr[j] < pivot)
 		{
-			i++;
-			if (i != j)
+			if (i < j)
 			{
 			swap_quick(&arr[i], &arr[j]);
 			print_array(arr, size);
 			}
+			i++;
 		}
 	}
 	/*Place the pivot element in its correct position*/
-	if (i + 1  != high)
+	if (arr[i] > arr[high])
 	{
-	swap_quick(&arr[i + 1], &arr[high]);
+	swap_quick(&arr[i], &arr[high]);
 	print_array(arr, size);
 	}
-	return (i + 1);
+	return (i);
 }
 
 /**
