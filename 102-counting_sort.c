@@ -35,14 +35,19 @@ void counting_sort(int *arr, size_t size)
 {
 	/*The output integer array that will have the sorted elements*/
 	/*int output[size];*/
-	int i;
+	int i, largenum;
+	int *count;
+	int *output;
 	int size2 = size;
-	int largenum = findMax(arr, size);
+
+	if (array == NULL || size < 2)
+		return;
+	largenum = findMax(arr, size);
 	/* Create a count array to store the count of individual*/
 	/* elements and initialize count array as 0*/
 
-	int *count = malloc(sizeof(int) *  largenum + 1);
-	int *output = malloc(sizeof(int) * size2);
+	count = malloc(sizeof(int) *  largenum + 1);
+	output = malloc(sizeof(int) * size2);
 	/*memset(count, 0, largenum + 1);*/
 	/* Store count of each element*/
 	for (i = 0; i < size2; ++i)
