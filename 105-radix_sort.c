@@ -29,10 +29,13 @@ int getMax(int a[], int n)
  */
 void countingSort(int a[], int n, int place)
 {
-	int *output = (int *)malloc((n + 1) * sizeof(int));
+	int *output = (int *)malloc((n) * sizeof(int));
 	int count[10] = {0};
 	int i;
 	int placeincrement = 0;
+
+	if (output == NULL)
+		return;
 
 	/* Calculate count of elements*/
 	for (i = 0; i < n; i++)
