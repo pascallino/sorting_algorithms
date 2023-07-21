@@ -50,7 +50,7 @@ void cocktail_sort_list(listint_t **list)
 	while (swapped)
 	{
 		swapped = 0;
-		while (start != end)/* Forward pass (bubble sort)*/
+		while (start->next != end)/* Forward pass (bubble sort)*/
 		{
 			if ((start->next) && start->n > start->next->n)
 			{
@@ -67,7 +67,7 @@ void cocktail_sort_list(listint_t **list)
 		swapped = 0;
 		start = start->prev;/* Mark the end of the sorted portion*/
 		end = start;/* Backward pass (bubble sort)*/
-		while (start != begin)/* Backward pass (bubble sort)*/
+		while (start->prev != begin)/* Backward pass (bubble sort)*/
 		{
 			if (start->prev != NULL && (start->n < start->prev->n))
 			{
