@@ -30,7 +30,7 @@ int getMax(int a[], int n)
 void countingSort(int a[], int n, int place)
 {
 	int *output = malloc((n) * sizeof(int));
-	int count[10] = {0};
+	int count[20] = {0};
 	int i;
 	int placeincrement = 0;
 
