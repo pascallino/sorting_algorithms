@@ -34,11 +34,8 @@ int findMax(int arr[], int size)
 void counting_sort(int *arr, size_t size)
 {
 	/*The output integer array that will have the sorted elements*/
-	/*int output[size];*/
-	int i, largenum;
-	int *count;
-	int *output;
-	int size2 = size;
+	int i, largenum, size2 = size;
+	int *count, *output;
 
 	if (arr == NULL || size < 2)
 		return;
@@ -48,11 +45,9 @@ void counting_sort(int *arr, size_t size)
 
 	count = malloc(sizeof(int) *  largenum + 1);
 	output = malloc(sizeof(int) * size2);
-	/*memset(count, 0, largenum + 1);*/
 	/* Store count of each element*/
 	for (i = 0; i < size2; ++i)
 		++count[arr[i]];
-
 	/* Change count[i] so that count[i] now contains the actual*/
 	/* position of this element in the output array*/
 	for (i = 1; i < largenum + 1; ++i)
